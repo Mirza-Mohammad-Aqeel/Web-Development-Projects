@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker</title>
+</head>
+<body>
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: white !important;
+        }
+        h1 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        h1:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+
+        .pio:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+
+        .mybutton {
+            padding: 10px;
+            margin: 0px;
+            color: white;
+            background-color: gray;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            cursor: pointer;
+        }
+
+        .mybutton:hover {
+            background-color: rgb(81, 78, 78);
+        }
+
+        h2:hover {
+            opacity: 60%;
+        }
+
+        .thebutton:hover {
+            box-shadow: 0 0 5px 5px rgb(242, 175, 219);  
+            cursor: pointer;
+        }
+
+        .thebutton {
+            transition: box-shadow 0.3s ease;
+        
+        }
+
+        .colorpicker:hover {
+            box-shadow: 0 0 15px 15px rgb(242, 175, 175);  
+            cursor: pointer;
+        }
+
+        .colorpicker {
+            transition: box-shadow 0.3s ease;
+        }
+
+
+    </style>
+
+    <header style="text-align: center; padding: 15px; background-color: lightblue;  border-bottom: 5px solid black;">
+        <h1 style="margin-top: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; margin-bottom: 20px;">Color Picker</h1>
+    </header>
+    
+    <br>
+    <nav style="background-color: gray;  text-align: center; border-bottom: 5px solid black;  margin-top: -19px;">
+        <a href="Omni-Tools.html"><button class="mybutton">Home</button></a>
+        <a href="Color_Picker.html"><button class="mybutton">Color Changer</button></a>
+        <a href="Tip_Calculator.html"><button class="mybutton">Tip Calculator</button></a>
+        <a href="String_Manager.html"><button class="mybutton">String Manager</button></a>
+        <a href="Simple_Quiz.html"><button class="mybutton">Simple Quiz</button></a>
+    </nav>
+
+    <main style="display: flex; flex-direction: row; justify-content: center; align-items: center; ">
+        <div style=" width: 400px;  border: 5px solid black; border-radius: 10px; margin-top: 30px; overflow: hidden;" class="colorpicker">
+            <div style="background-color: rgb(192, 186, 186); padding: 10px; display: flex; flex-direction: row; justify-content: center; align-items: center; border-bottom: 5px solid black; ">
+                <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; text-align: center; margin-top: 10px; margin-bottom: 10px;">Color Maker</h2>
+            </div>
+
+            <br>
+
+            <div>
+                <label style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: bold; margin-right: 20px; margin-left: 20px;">● <label style="margin-left: 10px;" class="pio">Make your Color</label></label>
+                <input type="color" style="border-radius: 50px; padding: 2px;" id="choosecolor">
+                <label id="copymessage" style="margin-left: 35px; font-family: Arial, Helvetica, sans-serif; font-weight: bold;"></label>
+
+                <br><br>
+
+                <div style="display: flex; flex-direction: row; justify-content: center;">                
+                    <input type="text" readonly style="border: 5px solid black; border-radius: 50px; padding: 10px;" id="displaycolor">
+                    <button id="copycolor" style="margin-left: 20px; border-radius: 10px; border: none; outline: none; padding: 20px; font-size: 1rem; font-weight: bold;" class="thebutton">Copy Color</button>
+                </div>
+
+            </div>   
+
+            <br>
+            <hr>
+            <br> 
+
+            <div>
+                <label style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: bold; margin-right: 20px; margin-left: 20px;">● <label style="margin-left: 10px;" class="pio">Enter your Color as Text</label></label>
+                <input type="text" style="width: 120px; border: 5px solid black; border-radius: 10px; overflow: hidden; padding: 5px;" id="entercolor">
+                <br><br>
+
+                <div style="display: flex; flex-direction: row; justify-content: center;">                
+                    <input type="text" readonly style="border: 5px solid black; border-radius: 50px; padding: 10px;" id="displayrgb">
+                    <button id="copyrgb" style="margin-left: 20px; border-radius: 10px; border: none; outline: none; padding: 20px; font-size: 1rem; font-weight: bold;" class="thebutton" onclick="copyToClipboard('displayrgb')">Copy Hex</button>
+                </div>
+                <br>
+
+                <div style="display: flex; flex-direction: row; justify-content: center;">                
+                    <input type="text" readonly style="border: 5px solid black; border-radius: 50px; padding: 10px;" id="displayhex">
+                    <button id="copyhex" style="margin-left: 20px; border-radius: 10px; border: none; outline: none; padding: 20px; font-size: 1rem; font-weight: bold;" class="thebutton" onclick="copyToClipboard('displayhex')">Copy Rgb</button>
+                </div>
+                <br>
+
+            </div>       
+            <br>
+        </div>
+    </main>
+
+    <script>
+        const choosecolor = document.getElementById("choosecolor");
+        const d = document.getElementById("displaycolor");
+        const copybutton = document.getElementById("copycolor");
+        const message = document.getElementById("copymessage");
+
+        const enteredcolor = document.getElementById("entercolor");
+        const displayrgb = document.getElementById("displayrgb")
+        const displayhex = document.getElementById("displayhex");
+        const copyrgb = document.getElementById("copyrgb")
+        const copyhex = document.getElementById("copyhex");
+        const copiedmessage = document.getElementById("copiedmessage");
+
+
+        function updateColortext () {
+            d.value = choosecolor.value;    
+        }
+
+        updateColortext();
+        choosecolor.addEventListener('input', updateColortext);
+
+        copybutton.addEventListener('click', () => {
+            d.select();
+
+            navigator.clipboard.writeText(d.value).then(() => {
+                message.textContent = "Copied";
+
+                setTimeout(() => {
+                    message.textContent = "";
+                }, 200);
+            }).catch(err => {
+                message.textContent = "Failed to Copy";
+                console.error("Failed to Copy",err)
+            });
+        });
+
+        enteredcolor.addEventListener("keydown", function(event) {
+            if(event.key == "Enter") {
+                updateColorOutputs(this.value.trim());
+            }
+        });
+
+        function updateColorOutputs(userinput) {
+            const dummy = document.createElement("div");
+            dummy.style.color = userinput;
+            document.body.appendChild(dummy);
+        
+            const rgb = window.getComputedStyle(dummy).color;
+            document.body.removeChild(dummy);
+            displayhex.value = rgbtoHex(rgb) || "";
+            displayrgb.value = rgb || "";
+        }    
+
+        function copyToClipboard(id) {
+            const input = document.getElementById(id);
+            if (input.value) {
+                navigator.clipboard.writeText(input.value);
+            }
+        }
+
+        function rgbtoHex(rgb) {
+            const match = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+            if (!match) return null;
+            return "#" + [match[1], match[2], match[3]]
+                .map(x => parseInt(x).toString(16).padStart(2,"0"))
+                .join('').toUpperCase();
+        }
+        
+    </script>
+</body>
+</html>

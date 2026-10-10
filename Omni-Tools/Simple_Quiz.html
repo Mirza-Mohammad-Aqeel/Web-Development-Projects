@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Quiz Engine</title>
+</head>
+<body>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: white !important;
+        }
+        h1 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        h1:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+
+        .pio:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+
+        .mybutton {
+            padding: 10px;
+            margin: 0px;
+            color: white;
+            background-color: gray;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            cursor: pointer;
+        }
+
+        .mybutton:hover {
+            background-color: rgb(81, 78, 78);
+        }
+
+        #ip:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+
+        .thebutton:hover {
+            box-shadow: 0 0 5px 5px rgb(242, 175, 219);  
+            cursor: pointer;
+        }
+
+        .thebutton {
+            transition: box-shadow 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            width: 150px;
+        }
+
+        .colorpicker:hover {
+            box-shadow: 0 0 15px 15px rgb(242, 175, 175);  
+            cursor: pointer;
+        }
+
+        .qandabox {
+            transition: box-shadow 0.3s ease;
+        }
+
+        .qandabox:hover {
+            box-shadow: 0 0 15px 15px rgb(242, 175, 175);  
+            cursor: pointer;
+        }
+
+        .colorpicker {
+            transition: box-shadow 0.3s ease;
+        }
+
+        .mylabel:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+
+        .question {
+            margin-left: 20px;
+        }
+        .q:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+        .q {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .answer {
+            border: 4px solid black;
+            margin-left: 20px;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .quiz-row {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+
+        #score-display {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 25px;
+            color: green;
+            display: inline-block;
+        }
+
+        #score-display:hover {
+            opacity: 60%;
+        }
+
+        #status {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 25px;
+            color: green;
+            display: inline-block;
+        }
+
+        #status:hover {
+            opacity: 60%;
+        }
+
+        .pil:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+    </style>
+
+    <header style="text-align: center; padding: 15px; background-color: lightblue;  border-bottom: 5px solid black;">
+        <h1 style="margin-top: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; margin-bottom: 20px;">Simple Quiz Engine</h1>
+    </header>
+    
+    <br>
+    <nav style="background-color: gray;  text-align: center; border-bottom: 5px solid black;  margin-top: -19px;">
+        <a href="Omni-Tools.html"><button class="mybutton">Home</button></a>
+        <a href="Color_Picker.html"><button class="mybutton">Color Changer</button></a>
+        <a href="Tip_Calculator.html"><button class="mybutton">Tip Calculator</button></a>
+        <a href="String_Manager.html"><button class="mybutton">String Manager</button></a>
+        <a href="Simple_Quiz.html"><button class="mybutton">Simple Quiz</button></a>
+    </nav>
+
+    <main style="display: flex; flex-direction: row; justify-content: center; align-items: center; ">
+
+        <div style=" width: 680px; border: 5px solid black; border-radius: 10px; overflow: hidden; padding-bottom: 40px; margin-top: 50px;" class="colorpicker">
+            <div style="background-color: rgb(192, 186, 186); padding: 30px; display: flex; flex-direction: row; justify-content: center; align-items: center; border-bottom: 5px solid black; margin: 0px;">
+                <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; text-align: center; margin-top: 10px; margin-bottom: 10px;">== <label id="ip">Quiz</label> ==</h2>
+            </div>
+
+            <div style="display: flex; flex-direction: row; justify-content: center;">
+                <button style="padding: 10px; margin: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; background-color: greenyellow; border: none; border-radius: 20px; font-weight: bold; font-size: 1.5rem;" class="thebutton" id="startquiz">Start Quiz</button>
+            </div>
+
+            <hr>
+            <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 20px; padding-right: 25px;" id="place">
+            </div>    
+        </div>
+    </main>
+
+    <br>
+
+    <script>
+    let questions = ["Who is the First man on Earth ?", "Where is the City of Babylon located ?", "What is the Weakest element in the Periodic table ?", "How did the Prince of Austria die ?", "When did Pakistan gain Independence ?"];
+    let answers = ["Adam", "Iraq", "Cesium", "Assasination via Gun", "1947"];
+
+    localStorage.setItem("quizQuestions", JSON.stringify(questions));
+    localStorage.setItem("quizAnswers", JSON.stringify(answers)); 
+
+    let savedQuestions = JSON.parse(localStorage.getItem("quizQuestions"));
+    let savedAnswers = JSON.parse(localStorage.getItem("quizAnswers"));
+
+    const start = document.getElementById("startquiz");
+    const quizContainer = document.getElementById("place"); 
+
+    let currentIndex = 0;
+    let score = 0;
+
+    start.addEventListener("click", () => {
+        quizContainer.innerHTML = ""; 
+        currentIndex = 0; 
+        score = 0;        
+        showQuestion(currentIndex);
+    });
+
+    function showQuestion(index) {
+        let questionRow = document.createElement("div");
+        questionRow.classList.add("quiz-row");
+
+        const textContainer = document.createElement("div");
+        const bullet = document.createElement("label");
+        bullet.classList.add("question");
+        bullet.textContent = "● ";
+
+        const qText = document.createElement("label");
+        qText.classList.add("q");
+        qText.textContent = savedQuestions[index];
+
+        textContainer.appendChild(bullet);
+        textContainer.appendChild(qText);
+
+        const answerBox = document.createElement("input");
+        answerBox.type = "text";
+        answerBox.classList.add("answer");
+        answerBox.placeholder = "Type answer & press Enter...";
+
+        questionRow.appendChild(textContainer);
+        questionRow.appendChild(answerBox);
+        quizContainer.appendChild(questionRow);
+
+        answerBox.focus();
+
+        answerBox.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                const userInput = answerBox.value.trim();
+
+                if (userInput === "") {
+                    alert("Please enter an answer before pressing Enter!");
+                    return;
+                }
+
+                answerBox.disabled = true;
+
+                if (userInput.toLowerCase() === savedAnswers[index].toLowerCase()) {
+                    score++;
+                }
+
+                if (currentIndex < savedQuestions.length - 1) {
+                    currentIndex++;
+                    showQuestion(currentIndex);
+                } else {
+                    displayFinalScore();
+                }
+            }
+        });
+    }
+
+    function displayFinalScore() {
+        const divider = document.createElement("hr");
+        divider.style.marginTop = "25px";
+        divider.style.marginBottom = "25px";
+        divider.style.marginRight = "-25px"
+        quizContainer.appendChild(divider);
+
+        const status = document.createElement("div");
+        const scoreDiv = document.createElement("div");
+        scoreDiv.id = "score-display";
+        status.id = "status";
+        scoreDiv.innerHTML = `Quiz Complete!`;
+        status.innerHTML = `Your Score: ${score}`;
+
+        
+        quizContainer.appendChild(scoreDiv);
+        quizContainer.appendChild(status);
+
+    }
+    </script>
+
+
+</body>
+</html>

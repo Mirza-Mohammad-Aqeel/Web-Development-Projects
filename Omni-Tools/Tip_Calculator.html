@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+</head>
+<body>
+      
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: white !important;
+        }
+        h1 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        h1:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+
+        .pio:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+
+        .mybutton {
+            padding: 10px;
+            margin: 0px;
+            color: white;
+            background-color: gray;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            cursor: pointer;
+        }
+
+        .mybutton:hover {
+            background-color: rgb(81, 78, 78);
+        }
+
+        h2:hover {
+            opacity: 60%;
+        }
+
+        .thebutton:hover {
+            box-shadow: 0 0 5px 5px rgb(242, 175, 219);  
+            cursor: pointer;
+        }
+
+        .thebutton {
+            transition: box-shadow 0.3s ease;
+        
+        }
+
+        .colorpicker:hover {
+            box-shadow: 0 0 15px 15px rgb(242, 175, 175);  
+            cursor: pointer;
+        }
+
+        .colorpicker {
+            transition: box-shadow 0.3s ease;
+        }
+
+
+    </style>
+
+    <header style="text-align: center; padding: 15px; background-color: lightblue;  border-bottom: 5px solid black;">
+        <h1 style="margin-top: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; margin-bottom: 20px;">Tip & Discount Calculator</h1>
+    </header>
+    
+    <br>
+    <nav style="background-color: gray;  text-align: center; border-bottom: 5px solid black;  margin-top: -19px;">
+        <a href="Omni-Tools.html"><button class="mybutton">Home</button></a>
+        <a href="Color_Picker.html"><button class="mybutton">Color Changer</button></a>
+        <a href="Tip_Calculator.html"><button class="mybutton">Tip Calculator</button></a>
+        <a href="String_Manager.html"><button class="mybutton">String Manager</button></a>
+        <a href="Simple_Quiz.html"><button class="mybutton">Simple Quiz</button></a>
+    </nav>
+
+    <main style="display: flex; flex-direction: row; justify-content: center; align-items: center; ">
+        <div style=" width: 400px;  border: 5px solid black; border-radius: 10px; margin-top: 30px; overflow: hidden;" class="colorpicker">
+            <div style="background-color: rgb(192, 186, 186); padding: 10px; display: flex; flex-direction: row; justify-content: center; align-items: center; border-bottom: 5px solid black; ">
+                <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; text-align: center; margin-top: 10px; margin-bottom: 10px;">Tip & Discount Tools</h2>
+            </div>
+
+            <br>
+
+            <div>
+                <label style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: bold; margin-right: 20px; margin-left: 20px;">● <label style="margin-left: 10px;" class="pio">Enter your Amount</label></label>
+                <input type="number" style="border-radius: 10px; padding: 4px; border: 4px solid black; width: 100px;" id="entereamount_tip">
+                <br><br>
+
+                <label style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: bold; margin-right: 20px; margin-left: 20px;">● <label style="margin-left: 10px;" class="pio">Enter your Tip Percentage</label></label>
+                <input type="number" style="border-radius: 10px; padding: 4px; border: 4px solid black; width: 100px;" id="tippercentage">
+
+
+                <br><br>
+
+                <div style="display: flex; flex-direction: row; justify-content: center;">                
+                    <input type="text" readonly style="border: 5px solid black; border-radius: 50px; padding: 10px;" id="displayfinal_tip">
+                    <button id="copyfinal_discount" style="margin-left: 20px; border-radius: 10px; border: none; outline: none; padding: 20px; font-size: 1rem; font-weight: bold;" class="thebutton">Copy Amount</button>
+                </div>
+
+            </div>   
+
+            <br>
+            <hr>
+            <br> 
+
+            <div>
+                <label style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: bold; margin-right: 20px; margin-left: 20px;">● <label style="margin-left: 10px;" class="pio">Enter your Amount</label></label>
+                <input type="number" style="border-radius: 10px; padding: 4px; border: 4px solid black; width: 100px;" id="entereamount_discount">
+                <br><br>
+
+                <label style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: bold; margin-right: 20px; margin-left: 20px;">● <label style="margin-left: 10px;" class="pio">Enter your Discount Percentage</label></label>
+                <input type="number" style="border-radius: 10px; padding: 4px; border: 4px solid black; width: 70px;" id="discountperce">
+
+
+                <br><br>
+
+                <div style="display: flex; flex-direction: row; justify-content: center;">                
+                    <input type="text" readonly style="border: 5px solid black; border-radius: 50px; padding: 10px;" id="displayfinal_discount">
+                    <button id="copyfinal_tip" style="margin-left: 20px; border-radius: 10px; border: none; outline: none; padding: 20px; font-size: 1rem; font-weight: bold;" class="thebutton">Copy Amount</button>
+                </div>
+
+                
+
+            </div>       
+            <br>
+        </div>
+    </main>
+
+    <script>
+        const entereamount_discount = document.getElementById("entereamount_discount");
+        const entereamount_tip = document.getElementById("entereamount_tip");
+
+        const discountperce = document.getElementById("discountperce");
+        const tippercentage = document.getElementById("tippercentage");
+
+        const displayfinal_discount = document.getElementById("displayfinal_discount");
+        const displayfinal_tip = document.getElementById("displayfinal_tip");
+
+        const copyfinal_tip = document.getElementById("copyfinal_discount");       
+        const copyfinal_discount = document.getElementById("copyfinal_tip");     
+
+        function gettippedamount(amountElem, percenElem) {
+            let amount = parseFloat(amountElem.value);
+            let percen = parseFloat(percenElem.value);
+
+            if (!isNaN(amount) && !isNaN(percen)) {
+                let temp_math = amount * (percen / 100);
+                let total = amount + temp_math;
+                displayfinal_tip.value = total.toFixed(2) + " $";
+            }
+        }
+
+        function getdiscountedamount(amountElem, percenElem) {
+            let amount = parseFloat(amountElem.value);
+            let percen = parseFloat(percenElem.value);
+
+            if (!isNaN(amount) && !isNaN(percen)) {
+                let temp_math = amount * (percen / 100);
+                let total = amount - temp_math;
+                displayfinal_discount.value = total.toFixed(2) + " $";
+            }
+        }
+
+        function copyToClipboard(button, txtinput) {
+            button.addEventListener("click", async () => {
+                const texttopcopy = txtinput.value;
+                
+                if (!texttopcopy) {
+                    alert("Nothing to copy yet!");
+                    return;
+                }
+
+                // Try modern Clipboard API first (HTTPS/localhost)
+                if (navigator.clipboard && window.isSecureContext) {
+                    try {
+                        await navigator.clipboard.writeText(texttopcopy);
+                        alert("Copied: " + texttopcopy);
+                        return;
+                    } catch (err) {
+                        console.warn("Clipboard API failed, trying fallback...", err);
+                    }
+                }
+
+                // Fallback method for local files (file:// protocol)
+                try {
+                    const textArea = document.createElement("textarea");
+                    textArea.value = texttopcopy;
+                    
+                    textArea.style.position = "fixed";
+                    textArea.style.top = "0";
+                    textArea.style.left = "0";
+                    textArea.style.opacity = "0";
+                    
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    
+                    const successful = document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    
+                    if (!successful) {
+                        alert("Failed to copy");
+                    }
+                } catch (err) {
+                    alert("Failed to copy");
+                }
+            });
+        }
+
+        // Initialize copy buttons with their respective text inputs
+        copyToClipboard(copyfinal_tip, displayfinal_tip);
+        copyToClipboard(copyfinal_discount, displayfinal_discount);
+
+        // Trigger calculation on Enter key
+        document.addEventListener("keydown", function(event) {
+            if(event.key === "Enter") {
+                getdiscountedamount(entereamount_discount, discountperce);
+                gettippedamount(entereamount_tip, tippercentage);
+            }
+        });
+
+        entereamount_tip.addEventListener("input", () => gettippedamount(entereamount_tip, tippercentage));
+        tippercentage.addEventListener("input", () => gettippedamount(entereamount_tip, tippercentage));
+        
+        entereamount_discount.addEventListener("input", () => getdiscountedamount(entereamount_discount, discountperce));
+        discountperce.addEventListener("input", () => getdiscountedamount(entereamount_discount, discountperce));
+    </script>
+</body>
+</html>

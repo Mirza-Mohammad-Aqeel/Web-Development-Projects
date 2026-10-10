@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: white !important;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        h1 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        h1:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+        .mylabel:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+        .mybutton {
+            padding: 10px;
+            margin: 0px;
+            color: white;
+            background-color: gray;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            cursor: pointer;
+        }
+        .mybutton:hover {
+            background-color: rgb(81, 78, 78);
+        }
+        .thebutton:hover {
+            box-shadow: 0 0 5px 5px rgb(242, 175, 219);  
+            cursor: pointer;
+        }
+        .thebutton {
+            transition: box-shadow 0.3s ease;
+        }
+        .colorpicker {
+            transition: all 0.3s ease;
+        }
+        .colorpicker:hover {
+            box-shadow: 0 0 15px 15px rgb(242, 175, 175);   
+            cursor: pointer;
+        }
+        .arrow-toggle-btn {
+            background-color: #f0f0f0;
+            border: 2px solid black;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .arrow-toggle-btn:hover {
+            background-color: #e0e0e0;
+            box-shadow: 0 0 5px 5px rgb(242, 175, 219);  
+        }
+        .notes-display-card {
+            width: 0px;
+            opacity: 0;
+            overflow: hidden;
+            border: 5px solid black;
+            border-radius: 10px;
+            margin-top: 30px;
+            margin-left: 0px;
+            background-color: #fff;
+            transition: all 0.5s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .notes-display-card.active {
+            width: 500px;
+            opacity: 1;
+            margin-left: 20px;
+            padding: 0px; 
+        }
+        .notes-content-area {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+            max-height: 450px;
+            overflow-y: auto;
+        }
+        .note-card-item {
+            border: 3px solid black;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            min-height: 120px;
+            word-break: break-word;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .task:hover {
+            cursor: pointer;
+            background-color: #e0e0e0;
+        }
+        .task {
+            transition: box-shadow 0.3s ease;
+        }
+        .delete-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            align-self: flex-end;
+            margin-top: 5px;
+        }
+        .delete-btn:hover {
+            opacity: 0.7;
+        }
+        .clear-all-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .clear-all-btn:hover {
+            background-color: #cc0000;
+        }
+        #notesDisplayCard{
+            transition: all 0.3s ease;
+        }
+        #notesDisplayCard:hover{
+            box-shadow: 0 0 15px 15px rgb(242, 175, 175);   
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header style="text-align: center; padding: 15px; background-color: lightblue; border-bottom: 5px solid black;">
+        <h1 style="margin-top: 20px; margin-bottom: 20px;">Expense Tracker</h1>
+    </header>
+    
+    <br>
+    <nav style="background-color: gray; text-align: center; border-bottom: 5px solid black; margin-top: -19px;">
+        <a href="Sync_Life.html"><button class="mybutton">Home</button></a>
+        <a href="Notes_App.html"><button class="mybutton">Notes App</button></a>
+        <a href="Task_Manager.html"><button class="mybutton">Task Manager</button></a>
+        <a href="Expense_Tracker.html"><button class="mybutton">Expense Tracker</button></a>
+        <a href="Digital_Library.html"><button class="mybutton">Digital Library</button></a>
+    </nav>
+
+    <main style="display: flex; flex-direction: row; justify-content: center; align-items: flex-start; flex-wrap: wrap; padding: 20px;">
+        
+        <div style="width: 400px; border: 5px solid black; border-radius: 10px; margin-top: 30px; overflow: hidden;" class="colorpicker">
+            <div style="background-color: rgb(192, 186, 186); padding: 10px; display: flex; justify-content: center; align-items: center; border-bottom: 5px solid black;">
+                <h2 style="margin-top: 10px; margin-bottom: 10px;" class="mylabel">My Expenses</h2>
+            </div>
+
+            <br>
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <input type="text" placeholder="Expense Name" style="width: 200px; border: 5px solid black; border-radius: 10px; padding: 10px;" id="name"><br><br>
+                <textarea placeholder="Expense Description" style="border: 5px solid black; border-radius: 10px; padding: 20px;" id="content"></textarea><br><br>
+                <input type="number" placeholder="Expense Amount" style="width: 200px; border: 5px solid black; border-radius: 10px; padding: 10px;" id="amount"><br><br>
+                <button id="addnote" style="border-radius: 10px; border: none; outline: none; padding: 20px; font-size: 1rem; font-weight: bold;" class="thebutton" onclick="addNote()">Add Expense</button>
+            </div>   
+
+            <br><hr><br> 
+
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <input type="text" placeholder="Editing Expense" style="width: 200px; border: 5px solid black; border-radius: 10px; padding: 10px;" id="editingnotename"><br><br>
+                <textarea placeholder="New Description" style="border: 5px solid black; border-radius: 10px; padding: 20px;" id="newcontent"></textarea><br><br>
+                <button id="editthenote" style="border-radius: 10px; border: none; outline: none; padding: 20px; font-size: 1rem; font-weight: bold;" class="thebutton" onclick="editNote()">Edit Description</button>
+            </div> 
+            <br>
+        </div>
+
+        <div style="margin: 30px 10px 0 10px; display: flex; align-items: center;">
+            <button class="arrow-toggle-btn" id="toggleArrow" onclick="toggleNotesView()">➔</button>
+        </div>
+
+        <div class="notes-display-card" id="notesDisplayCard">
+            <div style="background-color: rgb(192, 186, 186); padding: 10px; text-align: center; border-bottom: 5px solid black; border-top-left-radius: 5px; border-top-right-radius: 5px; display: flex; justify-content: space-between; align-items: center; padding-left: 20px; padding-right: 20px;">
+                <h2 style="margin-top: 10px; margin-bottom: 10px;" class="mylabel">Saved Expenses</h2>
+                <button class="clear-all-btn" onclick="clearAllTasks()">Clear All</button>
+            </div>
+            
+            <div class="notes-content-area">
+                <div class="notes-grid" id="notesGridContainer">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        let notes = JSON.parse(localStorage.getItem("notesApp")) || {};
+
+        const nameInput = document.getElementById("name");
+        const contentInput = document.getElementById("content");
+        const amountInput = document.getElementById("amount");
+        const editingnotename = document.getElementById("editingnotename");
+        const newcontent = document.getElementById("newcontent");
+        const notesDisplayCard = document.getElementById("notesDisplayCard");
+        const toggleArrow = document.getElementById("toggleArrow");
+        const notesGridContainer = document.getElementById("notesGridContainer");
+
+        function toggleNotesView() {
+            notesDisplayCard.classList.toggle("active");
+            
+            if (notesDisplayCard.classList.contains("active")) {
+                toggleArrow.textContent = "⬅";
+                renderNotesGrid();
+            } else {
+                toggleArrow.textContent = "➔";
+            }
+        }
+
+        function renderNotesGrid() {
+            notesGridContainer.innerHTML = "";
+            let currentNotes = JSON.parse(localStorage.getItem("notesApp")) || {};
+            
+            if (Object.keys(currentNotes).length === 0) {
+                notesGridContainer.innerHTML = "<p style='grid-column: span 2; text-align: center;'>No expenses added yet.</p>";
+                return;
+            }
+
+            for (let [title, taskData] of Object.entries(currentNotes)) {
+                let noteItem = document.createElement("div");
+                noteItem.className = "note-card-item task";
+                
+                let desc = typeof taskData === 'object' ? taskData.content : taskData;
+                let amt = typeof taskData === 'object' ? taskData.amount : '';
+
+                noteItem.innerHTML = `
+                    <div>
+                        <strong>${title}</strong>
+                        <hr style='margin: 5px 0;'>
+                        <p>${desc}</p>
+                        <small style="color: gray; display:block; margin-top:5px;">Amount: ${amt}</small>
+                    </div>
+                    <button class="delete-btn" onclick="deleteTask('${title.replace(/'/g, "\\'")}')" title="Delete Expense">🗑️</button>
+                `;
+                notesGridContainer.appendChild(noteItem);
+            }
+        }
+
+        function addNote() {
+            try {
+                const notename = nameInput.value.trim();
+                let notecontent = contentInput.value.trim();
+                let noteamount = amountInput.value.trim();
+                
+                if (!notename) {
+                    alert("Please enter a name!");
+                    return;
+                }
+
+                notes[notename] = {
+                    content: notecontent,
+                    amount: noteamount
+                };
+                
+                localStorage.setItem("notesApp", JSON.stringify(notes));
+
+                nameInput.value = "";
+                contentInput.value = "";
+                amountInput.value = "";
+                
+                if (notesDisplayCard.classList.contains("active")) {
+                    renderNotesGrid();
+                }
+                alert("Expense added successfully!");
+            }
+            catch (error) {
+                console.error(error);
+            }
+        }
+
+        function editNote() {
+            try {
+                const theeditingnote = editingnotename.value.trim();
+                let contentX = newcontent.value.trim();
+
+                if (!notes.hasOwnProperty(theeditingnote)) {
+                    alert("Expense not found!");
+                    return;
+                }
+
+                if (typeof notes[theeditingnote] === 'object') {
+                    notes[theeditingnote].content = contentX;
+                } else {
+                    // Fallback for legacy string data structures
+                    let oldAmount = "";
+                    notes[theeditingnote] = {
+                        content: contentX,
+                        amount: oldAmount
+                    };
+                }
+
+                localStorage.setItem("notesApp", JSON.stringify(notes));
+
+                editingnotename.value = "";
+                newcontent.value = "";
+
+                if (notesDisplayCard.classList.contains("active")) {
+                    renderNotesGrid();
+                }
+                alert("Description edited successfully!");
+            }
+            catch (error) {
+                console.error(error);
+            }
+        }
+
+        function deleteTask(title) {
+            if (confirm(`Are you sure you want to delete "${title}"?`)) {
+                delete notes[title];
+                localStorage.setItem("notesApp", JSON.stringify(notes));
+                
+                if (notesDisplayCard.classList.contains("active")) {
+                    renderNotesGrid();
+                }
+            }
+        }
+
+        function clearAllTasks() {
+            if (confirm("Are you sure you want to delete ALL expenses?")) {
+                notes = {};
+                localStorage.removeItem("notesApp");
+                renderNotesGrid();
+            }
+        }
+    </script>
+</body>
+</html>

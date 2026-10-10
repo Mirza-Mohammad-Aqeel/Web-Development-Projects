@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Suite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: white !important;
+        }
+        h1 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        h1:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+
+        .mybutton {
+            padding: 10px;
+            margin: 0px;
+            color: white;
+            background-color: gray;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            cursor: pointer;
+        }
+
+        .mybutton:hover {
+            background-color: rgb(81, 78, 78);
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }   
+
+        .aip {
+            padding: 10px;
+            border: 3px solid black;
+            border-radius: 50px;
+            background-color: lightcoral;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .aip:hover {
+            opacity: 60%;
+        }
+        p:hover {
+            opacity: 60%;
+            cursor: pointer;
+        }
+        .mylabel {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .mylabel:hover {
+            opacity: 60%;
+        }
+
+        p {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: 700;
+        }
+
+
+    </style>
+
+    <header style="text-align: center; padding: 15px; background-color: lightblue;  border-bottom: 5px solid black;">
+        <h1 style="margin-top: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; margin-bottom: 20px;">Study Suite</h1>
+    </header>
+    
+    <br>
+    <nav style="background-color: gray;  text-align: center; border-bottom: 5px solid black;  margin-top: -19px;">
+        <a href="Study_Suite.html"><button class="mybutton">Home</button></a>
+        <a href="Student_Dashboard.html"><button class="mybutton">Student Dashboard</button></a>
+        <a href="Movie_Manager.html"><button class="mybutton">Movie Library</button></a>
+        <a href="Music_Manager.html"><button class="mybutton">Music Library</button></a>
+        <a href="Inventory_Manager.html"><button class="mybutton">Inventory Manager</button></a>
+
+    </nav>
+    
+    <div class="pagecontainer" style="display: flex; flex-direction: row; width: 100%; ">
+
+        <aside id="sidebar" style="width: 280px; flex-shrink: 0; border-right: 5px solid black;  padding: 20px; background: white;">
+            <h1>Blogs</h1>
+            <br>
+
+            <div style="margin-left: -20px; display: flex; flex-direction: column;">
+                <label style="margin-left: 20px;">●<a href="Music_Manager.html"><button class="aip" type="button">Updated Character UI</button></a></label><br>
+               <label style="margin-left: 20px;">●<a href="Student_Dashboard.html"><button class="aip" type="button">No Bugs & Glitches</button></a></label></label><br>
+                <label style="margin-left: 20px;">●<a href="Inventory_Manager.html"><button class="aip" type="button">More Features</button></a></label>
+            </div>  
+
+            <br>
+            <hr style="margin-left: -20px; margin-right: -20px;">
+            <br>
+
+            <h1>Tools</h1>
+            <br>
+
+            <div style="margin-left: -20px; display: flex; flex-direction: column;">
+                <label style="margin-left: 20px;">●<a href="https://classroom.google.com/"><button class="aip" type="button">Google Clasroom</button></a></label><br>
+               <label style="margin-left: 20px;">●<a href="https://www.netflix.com/"><button class="aip" type="button">Netflix Hub</button></a></label><br>
+                <label style="margin-left: 20px;">●<a href="https://open.spotify.com/"><button class="aip" type="button">Spotify Premium</button></a></label>
+            </div>
+
+            
+        </aside>    
+
+
+        <main class="maincontent" style="flex-grow: 1; padding: 40px; background-color: white;">
+            <h1 style="text-align: center;">About Us</h1>
+
+            <br>
+            <hr style="margin-left: -40px; margin-right: -40px;">
+            <br>
+            
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <p>Welcome to our Website! Here, we offer you a Wide variety of tools for Management and Communication for user-convinience in a very</p>
+                <p>User-friendly way for You . They are built with Custom tools and great UI . The student Dashboard, will let you Record your students,</p>
+                <p>remove & edit their info, And manage their Grades. The music Library app, will let You record your music, remove them And even Stream </p>
+                <p>them . The movies Library app, will let you Record your Movies to help you Stay entertained, with options to remove them Or make changes</p>
+                <p>to them . Lastly, the inventory Manager app will let you Manage your inventory Products, remove & edit them And make changes to them </p>
+                <p>easily with No issues . This one of my Many smart applications I coded to practice my Java-Script knowledge & skills . I also coded this,</p>
+                <p>for my Advantages . It is a beginner-friendly introduction to Advanced ======================================================</p>
+                <p>topics and Website structure Design . I plan on Making more Applications with Improved styling and Functionality . Lastly, a note to people</p>
+                <p>Who are into coding =| Code is a tool and You are the consumer, so Use it to build anything You are imagining, as It has no limits . This ===</p>
+                <p>project has Already been uploaded to github for Reviewing, check out my Socials down Below .</p>
+            </div>    
+
+            <br>
+            <hr style="margin-left: -40px; margin-right: -40px;">
+            <br>
+
+            <p style="text-align: center; ">================ " Coding is like a Roller-Coaster, there are Ups & Down all the Time " | Aqeel Mirza ================</p>
+
+
+        </main>
+
+
+    </div>    
+        
+
+    <footer style=" background-color: lightblue;  border-top: 5px solid black; padding: 20px;">
+        <h1 style="margin-left: 5px;"><label>Socials</label> =|</h1>
+        <br>
+
+        <div style="display: flex; flex-direction: column; margin-top: 10px;">
+            <label style="margin-left: 5px;">●<a href="https://www.youtube.com/@ReallyMytrix"><label class="mylabel">Youtube</label></a> <i class="fa-brands fa-youtube" style="color: rgb(242, 16, 16);"></i></label><br>
+            <label style="margin-left: 5px;">●<a href="https://github.com/Mirza-Mohammad-Aqeel"><label class="mylabel">Github</label></a> <i class="fa-brands fa-github" style="color: rgb(43, 39, 39);"></i></label><br>
+        </div>
+
+    </footer>
+
+</body>
+</html>
